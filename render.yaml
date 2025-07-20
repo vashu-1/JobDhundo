@@ -3,19 +3,18 @@ services:
     name: jobdhundo-backend
     env: node
     plan: free
-    buildCommand: cd backend && npm install
-    startCommand: cd backend && npm start
+    rootDir: ./backend
+    buildCommand: npm install
+    startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
       - key: MONGO_URI
-        fromDatabase:
-          name: mongodb
-          property: connectionString
+        sync: false
       - key: PORT
         value: 10000
       - key: SECRET_KEY
-        generateValue: true
+        sync: false
       - key: CLOUD_NAME
         sync: false
       - key: API_KEY
